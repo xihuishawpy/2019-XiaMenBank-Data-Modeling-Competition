@@ -29,14 +29,19 @@ def w2v_transform(X,word2vec,length):
 
 
 def get_w2v(data_frame,feat,length):
-    model = Word2Vec(data_frame[feat].values, size=length, window=20, min_count=1,
-                     workers=10, iter=10)
-    return model
+    return Word2Vec(
+        data_frame[feat].values,
+        size=length,
+        window=20,
+        min_count=1,
+        workers=10,
+        iter=10,
+    )
 def w2v_feat(data):
     tr_w2v = get_w2v(data[['rid']],'rid',50)
     vect = w2v_transform(data.rid.values,tr_w2v.wv,50)
     for i in range(vect.shape[1]):
-        data['w2vn'+str(i)] = vect[:,i]
+        data[f'w2vn{str(i)}'] = vect[:,i]
     return data
 
 

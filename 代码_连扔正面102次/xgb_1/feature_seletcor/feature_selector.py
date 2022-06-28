@@ -402,7 +402,7 @@ class FeatureSelector():
         # Check for all required parameters
         for param in ['missing_threshold', 'correlation_threshold', 'eval_metric', 'task', 'cumulative_importance']:
             if param not in selection_params.keys():
-                raise ValueError('%s is a required parameter for this method.' % param)
+                raise ValueError(f'{param} is a required parameter for this method.')
 
         # Implement each of the five methods
         self.identify_missing(selection_params['missing_threshold'])
@@ -467,7 +467,7 @@ class FeatureSelector():
             # Need to use one-hot encoded data as well
             data = self.data_all
 
-            print('{} methods have been run\n'.format(list(self.ops.keys())))
+            print(f'{list(self.ops.keys())} methods have been run\n')
 
             # Find the unique features to drop
             features_to_drop = set(list(chain(*list(self.ops.values()))))
@@ -485,9 +485,8 @@ class FeatureSelector():
 
                 # Check to make sure the method has been run
                 if method not in self.ops.keys():
-                    raise NotImplementedError('%s method has not been run' % method)
+                    raise NotImplementedError(f'{method} method has not been run')
 
-                # Append the features identified for removal
                 else:
                     features_to_drop.append(self.ops[method])
 

@@ -48,7 +48,7 @@ def impute_NA_with_avg(data, strategy='mean', NA_col=[]):
             elif strategy == 'mode':
                 data_copy[i + '_impute_mode'] = data_copy[i].fillna(data[i].mode()[0])
         else:
-            print("Column %s has no missing" % i)
+            print(f"Column {i} has no missing")
     return data_copy
 #得到训练数据集，将训练数据与数据标签对应
 train_data = pd.merge(df, df_label, how='left', on=['id'])
